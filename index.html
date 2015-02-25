@@ -1,0 +1,21 @@
+{{define "index"}}
+{{template "header" .}}
+<form action="/" method="POST">
+<div><input type="text" name="search"></input></div>
+<div><input type="submit" value="Search"></div>
+</form>
+<form name="productForm" action="/save/" method="POST">
+<select name="catsel">
+{{ range $ele := .cats}}
+    <OPTION VALUE="{{$ele}}">{{$ele}}</OPTION>
+{{end}}
+</select>
+<h1>{{range $key, $ele := .vals.Items.Products}}</h1>
+<div><a href="{{ .URL }}">{{ .Title }}</a></div>
+<div><img src="{{ .Image }}" alt="{{ .Title }}"></div>
+<div><input type="checkbox" name="products" value="{{ .ASIN }}" /><p>{{ .Price }}</p></div>
+{{ end }}
+<div><input type="submit" value="Save" /></div>
+</form>
+</html>
+{{end}}

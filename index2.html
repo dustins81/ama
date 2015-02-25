@@ -1,0 +1,15 @@
+<html>
+<form action="/" method="POST">
+<div><input type="text" name="search"></input></div>
+<div><input type="submit" value="Search"></div>
+</form>
+<form name="productForm" action="/save/" method="POST">
+<!--<h1>{{ if data.Items.Products }}</h1>
+<div><a href="{{ .URL }}">{{ .Title }}</a></div>
+<div><img src="{{ .Image }}" alt="{{ .Title }}"></div>
+<div><input type="checkbox" name="products" value="{{ .ASIN }}" /><p>{{ .Price }}</p></div>
+{{ end }}i-->
+<div><input type="submit" value="Save" /></div>
+</form>
+{{range $ele := .cats}}{{ $ele }} {{end}}
+</html>

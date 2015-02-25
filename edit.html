@@ -1,0 +1,31 @@
+{{define "edit"}}
+{{template "header" .}}
+{{ $category := .cats }}
+{{ $data := .prods }}
+<form action="/edit/" method="POST">
+{{ range $ele := $category}}
+    <input type="checkbox" name="category" value="{{$ele}}">{{$ele}}</input>
+    {{end}}
+    <div><input type="submit" value="Sort"/></div>
+</form>
+<h1>{{ range $e := $data }}</h1>
+<div><a href="{{ $e.URL }}">{{ $e.Title }}</a></div>
+<div><img src="{{ $e.Image }}" alt="{{ $e.Title }}"></div>
+<div>{{ $e.Price }}</div>
+<form action="/catedit/" method="POST">  
+ <div><select name="catsel">
+  {{ range $ele := $category}}
+    <option value="{{$ele}}"{{if eq $ele $e.Cat}}selected="selected"{{end}}>{{$ele}}</option>
+    {{end}}
+    <input type="hidden" name="id" value="{{$e.ASIN}}"/>
+    </select><div>
+  <div><input type="submit"  value="Update" /></div>
+  </form>
+<form name="delete" action="/proddel/" method="POST">
+  <input type="hidden" name="product" value="{{$e.ASIN}}"/>
+<div><input type="submit"  value="Delete" /></div>
+</form>
+{{ end }}
+{{template "footer" .}}
+{{end}}
+

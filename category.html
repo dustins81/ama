@@ -1,0 +1,15 @@
+{{define "category"}}
+{{template "header" .}}
+<br>
+<form action="/category/" method="POST">
+<div><input type="text" name="category"></input></div>
+<div><input type="submit" value="Save"></div>
+</form>
+<form action="/catdel/" method="POST">
+<h1>{{ range . }}</h1>
+<div><input type="checkbox" name="category" value="{{ . }}">{{ . }}</input></div>
+{{ end }}
+<div><input type="submit" value="Delete" /></div>
+</form>
+{{template "footer" .}}
+{{end}}
